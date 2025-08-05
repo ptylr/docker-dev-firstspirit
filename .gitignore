@@ -88,3 +88,8 @@ public/feed.xml
 public/robots.txt
 public/sitemap-0.xml
 public/sitemap.xml
+
+.env
+/conf/firstspirit/fs-license.conf
+/conf/ngrok/ngrok.yml
+/conf/firstspirit/fs-server.conf

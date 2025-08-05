@@ -1,0 +1,43 @@
+#    __          .__
+#    _______/  |_ ___.__.|  |_______
+#    \____ \   __<   |  ||  |\_  __ \
+#    |  |_> >  |  \___  ||  |_|  | \/
+#    |   __/|__|  / ____||____/__|
+#    |__|         \/
+#
+#    https://ptylr.com
+#    https://www.linkedin.com/in/ptylr/
+
+services:
+  firstspirit:
+    container_name: firstspirit
+    image: docker.artifactory.e-spirit.hosting/e-spirit/firstspirit:5.2.241009
+    platform: linux/amd64
+    volumes:
+      - firstspirit-data:/opt/firstspirit5
+      - ./conf/firstspirit/fs-license.conf:/opt/firstspirit5/conf/fs-license.conf:ro
+      - ./conf/firstspirit/fs-server.conf:/opt/firstspirit5/conf/fs-server.conf:ro
+    restart: unless-stopped
+    networks:
+      - fsnet
+
+  ngrok:
+    container_name: ngrok
+    image: ngrok/ngrok:latest
+    platform: linux/amd64
+    volumes:
+      - ./conf/ngrok/ngrok.yml:/etc/ngrok.yml
+    command: start --all --config /etc/ngrok.yml
+    networks:
+      - fsnet
+    depends_on:
+      - firstspirit
+    restart: unless-stopped
+
+volumes:
+  firstspirit-data:
+
+networks:
+  fsnet:
+    name: firstspirit-network
+    driver: bridge

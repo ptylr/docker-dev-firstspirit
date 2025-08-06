@@ -14,4 +14,4 @@ tunnels:
   firstspirit:
     addr: firstspirit:80
     proto: http
-    domain: domain: your-subdomain.ngrok-free.app
+    domain: your-subdomain.ngrok-free.app

@@ -12,6 +12,6 @@ version: 2
 authtoken: your-ngrok-authtoken-here
 tunnels:
   firstspirit:
-    addr: firstspirit:80
+    addr: firstspirit:8000
     proto: http
     domain: domain: your-subdomain.ngrok-free.app
